@@ -44,7 +44,7 @@ Ganti <NAMA_ANDA> dengan nama anda dan <EMAIL_ANDA> dengan email yang anda gunak
 
 Kemudian download projek menggunakan clone
 ```
-git clone https://github.com/luthfiswees/QACamp-API.git
+git clone https://github.com/ferieandriansujarwo/QACamp-API.git
 cd QACamp-API
 ```
 
