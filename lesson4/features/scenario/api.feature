@@ -6,3 +6,4 @@ Scenario: Fetching user data
     Then I should have a response with status code "200"
     And I should get user data with id "1"
     And I should get todos with name "Leanne Graham"
+    And I should get element in "$.address.street" to have value "Kulas Light"

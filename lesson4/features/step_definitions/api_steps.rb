@@ -18,3 +18,8 @@ end
 Then("I should get todos with name {string}") do |title|
     expect(@content['name']).to eq title
 end
+
+Then("I should get element in {string} to have value {string}") do |json_path, value|
+    results = JsonPath.new(json_path).on(@content).to_a.map(&:to_s)[0]
+    expect(results).to eq value
+end
