@@ -99,6 +99,14 @@ Yang saya lakukan disini kurang lebih adalah ...
 - Meminta data kepada aplikasi menggunakan `Faraday.get` dan menyimpan hasilnya di variabel `@resp`
 - Mengambil konten dari data meggunakan `JSON.parse(@resp.body)` dan menyimpannya dalam variabel `@content`
 
+#### Show me the response
+```rb
+Then("Show me the response") do
+  puts @content
+end
+```
+Disini saya ingin melihat body dari response yang diambil dan disimpan didalam `@content`. Sehingga saya menampilkan isi dari `@content` menggunakan `puts`.
+
 #### I should get todos with id {string}
 ```rb
 Then("I should get todos with id {string}") do |id|
@@ -114,14 +122,6 @@ Then("I should get todos with title {string}") do |title|
 end
 ```
 Disini saya ingin memastikan apakah nilai title sudah sesuai atau belum. Sehingga saya mengambil nilai title dari `@content` menggunakan `@content['title']` dan membandingkannya dengan variabel `title` yang diambil dari Gherkin.
-
-#### Show me the response
-```rb
-Then("Show me the response") do
-  puts @content
-end
-```
-Disini saya ingin melihat body dari response yang diambil dan disimpan didalam `@content`. Sehingga saya menampilkan isi dari `@content` menggunakan `puts`.
 
 #### Response status should be {string}
 ```rb
