@@ -73,7 +73,7 @@ Scenario: Fetching todos
     And I should get todos with title "delectus aut autem"
     Then response status should be "200"
 ```
-Simpelnya, skenario saya ingin menguji apakah api user dengan id `1` akan memiliki judul `delectus aut autem`.
+Simpelnya, di skenario ini saya ingin menguji apakah api user dengan id `1` akan memiliki judul `delectus aut autem`.
 
 Untuk mengimplementasikan Gherkin. Saya membuat file bernama `api_steps.rb` pada direktori `step_definitions`. Berikut adalah penjelasan implementasi dari masing-masing _step_.
 
@@ -121,7 +121,7 @@ Then("show me the response") do
   puts @content
 end
 ```
-Disini saya ingin melihat data response yang diambil dan disimpan didalam `@content`. Sehingga saya menampilkan data dari `@content` menggunakan `puts @content`.
+Disini saya ingin melihat body dari response yang diambil dan disimpan didalam `@content`. Sehingga saya menampilkan data dari `@content` menggunakan `puts @content`.
 
 #### response status should be {string}
 ```rb
