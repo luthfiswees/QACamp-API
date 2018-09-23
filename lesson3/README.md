@@ -121,7 +121,7 @@ Then("show me the response") do
   puts @content
 end
 ```
-Disini saya ingin melihat body dari response yang diambil dan disimpan didalam `@content`. Sehingga saya menampilkan data dari `@content` menggunakan `puts @content`.
+Disini saya ingin melihat body dari response yang diambil dan disimpan didalam `@content`. Sehingga saya menampilkan isi dari `@content` menggunakan `puts @content`.
 
 #### response status should be {string}
 ```rb
