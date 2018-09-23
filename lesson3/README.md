@@ -123,9 +123,9 @@ end
 ```
 Disini saya ingin melihat body dari response yang diambil dan disimpan didalam `@content`. Sehingga saya menampilkan isi dari `@content` menggunakan `puts @content`.
 
-#### response status should be {string}
+#### Response status should be {string}
 ```rb
-Then("response status should be {string}") do |status|
+Then("Response status should be {string}") do |status|
   expect(@resp.status).to eq(status.to_i)
 end
 ```
