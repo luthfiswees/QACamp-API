@@ -66,36 +66,36 @@ Kemudian, untuk file Gherkin. Sekarang kita memiliki file `api.feature` pada dir
 Feature: Get Data from API
 
 Scenario: Fetching todos
-    Given I want to get todos with in "https://jsonplaceholder.typicode.com/todos/1"
-      And I want to fetch todos
-      And show me the response
+    Given I want to get todos with in "https://jsonplaceholder.typicode.com/todos"
+      And I want to fetch todos data with id "1"
+      And Show me the response
     Then I should get todos with id "1"
     And I should get todos with title "delectus aut autem"
-    Then response status should be "200"
+    Then Response status should be "200"
 ```
 Simpelnya, di skenario ini saya ingin menguji apakah api user dengan id `1` akan memiliki judul `delectus aut autem`.
 
 Untuk mengimplementasikan Gherkin. Saya membuat file bernama `api_steps.rb` pada direktori `step_definitions`. Berikut adalah penjelasan implementasi dari masing-masing _step_.
 
-#### I want to get user data from {string}
+#### I want to get todos with in {string}
 ```rb
-Given("I want to get user data from {string}") do |url|
-    @url = "#{url}/users"
+Given("I want to get todos with in {string}") do |url|
+    @url = url
 end
 ```
 Disini saya meng-assign variable `@url` dengan alamat url dari file Gherkin
 
-#### I want to fetch todos data
+#### I want to fetch todos data with id "1"
 ```rb
-Given("I want to fetch todos data") do
-    @resp = Faraday.get "#{@url}"
+Given("I want to fetch todos data with id {string}") do |id|
+    @resp = Faraday.get "#{@url}/#{id}"
     @content = JSON.parse(@resp.body)
 end
 ```
 Disini saya menggunakan library Faraday untuk mengambil respons dari url menggunakan metode `GET` menggunakan fungsi milik Faraday, `Faraday.get`. kemudian melakukan parsing hasil respon untuk mendapatkan konten data dari API.
 
 Yang saya lakukan disini kurang lebih adalah ...
-- Membuat url menjadi sesuai dengan format, yaitu `  https://jsonplaceholder.typicode.com/todos/1` dengan menuliskan `"#{@url}"`
+- Membuat url menjadi sesuai dengan format, yaitu `  https://jsonplaceholder.typicode.com/todos/1` dengan menuliskan `#{@url}/#{id}"`
 - Meminta data kepada aplikasi menggunakan `Faraday.get` dan menyimpan hasilnya di variabel `@resp`
 - Mengambil konten dari data meggunakan `JSON.parse(@resp.body)` dan menyimpannya dalam variabel `@content`
 
@@ -115,9 +115,9 @@ end
 ```
 Disini saya ingin memastikan apakah nilai title sudah sesuai atau belum. Sehingga saya mengambil nilai title dari `@content` menggunakan `@content['title']` dan membandingkannya dengan variabel `title` yang diambil dari Gherkin.
 
-#### show me the response
+#### Show me the response
 ```rb
-Then("show me the response") do
+Then("Show me the response") do
   puts @content
 end
 ```
@@ -143,8 +143,8 @@ Given("I want to get todos with in {string}") do |url|
     @url = url
 end
 
-Given("I want to fetch todos data") do
-    @resp = Faraday.get "#{@url}"
+Given("I want to fetch todos data with id {string}") do |id|
+    @resp = Faraday.get "#{@url}/#{id}"
     @content = JSON.parse(@resp.body)
 end
 
@@ -156,11 +156,11 @@ Then("I should get todos with title {string}") do |title|
     expect(@content['title']).to eq title
 end
 
-Then("show me the response") do
+Then("Show me the response") do
   puts @content
 end
 
-Then("response status should be {string}") do |status|
+Then("Response status should be {string}") do |status|
   expect(@resp.status).to eq(status.to_i)
 end
 ```
@@ -180,18 +180,18 @@ Maka kamu akan mendapatkan hasil berupa log sebagai berikut ...
 ```sh
 Feature: Get Data from API
 
-  Scenario: Fetching todos                                                           # features/scenario/api.feature:3
-    Given I want to get todos with in "https://jsonplaceholder.typicode.com/todos/1" # features/step_definitions/api_steps.rb:1
-    And I want to fetch todos data                                                   # features/step_definitions/api_steps.rb:5
-    And show me the response                                                         # features/step_definitions/api_steps.rb:18
+  Scenario: Fetching todos                                                         # features/scenario/api.feature:3
+    Given I want to get todos with in "https://jsonplaceholder.typicode.com/todos" # features/step_definitions/api_steps.rb:1
+    And I want to fetch todos data with id "1"                                     # features/step_definitions/api_steps.rb:5
+    And Show me the response                                                       # features/step_definitions/api_steps.rb:18
       {"userId"=>1, "id"=>1, "title"=>"delectus aut autem", "completed"=>false}
-    Then I should get todos with id "1"                                              # features/step_definitions/api_steps.rb:10
-    And I should get todos with title "delectus aut autem"                           # features/step_definitions/api_steps.rb:14
-    Then response status should be "200"                                             # features/step_definitions/api_steps.rb:22
+    Then I should get todos with id "1"                                            # features/step_definitions/api_steps.rb:10
+    And I should get todos with title "delectus aut autem"                         # features/step_definitions/api_steps.rb:14
+    Then Response status should be "200"                                           # features/step_definitions/api_steps.rb:22
 
 1 scenario (1 passed)
 6 steps (6 passed)
-0m1.968s
+0m0.163s
 ```
 Log ini menandakan jika skenario sudah bisa berjalan dengan baik. 
 
