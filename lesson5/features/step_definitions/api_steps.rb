@@ -15,7 +15,7 @@ Then("I should get user data with id {string}") do |id|
     expect(@content['id']).to eq id.to_i
 end
   
-Then("I should get todos with name {string}") do |title|
+Then("I should get user data with name {string}") do |title|
     expect(@content['name']).to eq title
 end
 

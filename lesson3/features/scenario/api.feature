@@ -5,4 +5,4 @@ Scenario: Fetching user data
     And I want to fetch user data with id "1"
     Then I should have a response with status code "200"
     And I should get user data with id "1"
-    And I should get todos with name "Leanne Graham"
+    And I should get user data with name "Leanne Graham"
