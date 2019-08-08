@@ -15,6 +15,14 @@ Then("I should get todos with title {string}") do |title|
     expect(@content['title']).to eq title
 end
 
+Then("I should get user with id {string}") do |id|
+  expect(@content[1]['id']).to eq id.to_i
+end
+
+Then("I should get user with name {string}") do |name|
+expect(@content[1]['name']).to eq name
+end
+
 Then("Show me the response") do
   puts @content
 end
