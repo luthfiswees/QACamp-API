@@ -29,6 +29,7 @@ Untuk Lesson ini, kita akan menggunakan API milik JsonPlaceholder. API ini akan 
 Kamu akan mendapatkan data dengan format seperti dibawah ini.
 ```
 {
+
   "userId": 1,
   "id": 1,
   "title": "delectus aut autem",
@@ -95,6 +96,7 @@ end
 Disini saya menggunakan library Faraday untuk mengambil respons dari url menggunakan metode `GET` menggunakan fungsi milik Faraday, `Faraday.get`. kemudian melakukan parsing hasil respon untuk mendapatkan konten data dari API.
 
 Yang saya lakukan disini kurang lebih adalah ...
+
 - Membuat url menjadi sesuai dengan format, yaitu `  https://jsonplaceholder.typicode.com/todos/1` dengan menuliskan `#{@url}/#{id}"`
 - Meminta data kepada aplikasi menggunakan `Faraday.get` dan menyimpan hasilnya di variabel `@resp`
 - Mengambil konten dari data meggunakan `JSON.parse(@resp.body)` dan menyimpannya dalam variabel `@content`
@@ -194,4 +196,3 @@ Feature: Get Data from API
 0m0.163s
 ```
 Log ini menandakan jika skenario sudah bisa berjalan dengan baik. 
-
