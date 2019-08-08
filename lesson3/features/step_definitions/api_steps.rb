@@ -2,6 +2,10 @@ Given("I want to get user data from {string}") do |url|
     @url = "#{url}/users"
 end
 
+Given("I want to get todos with in {string}") do |url|
+  @url = url
+end
+
 Given("I want to fetch todos data with id {string}") do |id|
     @resp = Faraday.get "#{@url}/#{id}"
     @content = JSON.parse(@resp.body)
